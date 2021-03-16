@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlPrint", "HtmlPrint\HtmlPrint.csproj", "{48CE32F3-826B-4BAB-8BC3-D5B2D47FD75A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlPrintLib", "HtmlPrintLib\HtmlPrintLib.csproj", "{DDED52FB-9FA1-42ED-A120-73156A200B7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48CE32F3-826B-4BAB-8BC3-D5B2D47FD75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48CE32F3-826B-4BAB-8BC3-D5B2D47FD75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48CE32F3-826B-4BAB-8BC3-D5B2D47FD75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48CE32F3-826B-4BAB-8BC3-D5B2D47FD75A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDED52FB-9FA1-42ED-A120-73156A200B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDED52FB-9FA1-42ED-A120-73156A200B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDED52FB-9FA1-42ED-A120-73156A200B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDED52FB-9FA1-42ED-A120-73156A200B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {504366A2-782B-4BDF-828D-91BF0E29BA85}
+	EndGlobalSection
+EndGlobal
