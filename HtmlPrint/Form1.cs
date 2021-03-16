@@ -35,6 +35,7 @@ namespace HtmlPrint
             try
             {
                 HtmlPrintLib.HtmlPrint htmlPrint = new HtmlPrintLib.HtmlPrint(html, printerName);
+                htmlPrint.Offset = Convert.ToInt32(txtAdj.Text ?? "0");
                 htmlPrint.Print();
             }
             catch (Exception ex)

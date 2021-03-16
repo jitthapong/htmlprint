@@ -9,8 +9,14 @@ namespace HtmlPrintLib
 {
     public class HtmlPrint
     {
+        private int _offset;
+
         public string Html { get; set; }
         public string PrinterName { get; set; }
+        public int Offset {
+            get => _offset;
+            set => _offset = value * 25;
+        }
 
         public HtmlPrint(string html, string printerName)
         {
@@ -32,7 +38,7 @@ namespace HtmlPrintLib
             try
             {
                 var htmlToImageConv = new HtmlConverter();
-                var bytesData = htmlToImageConv.FromHtmlString(Html, width: (int)pageSetting.PaperSize.Width, format: ImageFormat.Png, multiplier: 4);
+                var bytesData = htmlToImageConv.FromHtmlString(Html, width: (int)pageSetting.PaperSize.Width, format: ImageFormat.Png, multiplier: 6);
 
                 File.WriteAllBytes("image.png", bytesData);
             }
@@ -45,9 +51,9 @@ namespace HtmlPrintLib
             {
                 var img = Image.FromFile("image.png");
                 var targetSize = printableArea.Size;
-                var scale = Math.Min(targetSize.Width / img.Width, targetSize.Height / img.Height);
-                var newWidth = (int)(img.Width * scale);
-                var newHeight = (int)(img.Height * scale);
+                var ratio = Math.Min(targetSize.Width / img.Width, targetSize.Height / img.Height);
+                var newWidth = (int)(img.Width * ratio) - Offset;
+                var newHeight = (int)(img.Height * ratio) - (Offset > 0 ? Offset * 2 : Offset);
                 var rect = new Rectangle(0, 0, newWidth, newHeight);
                 e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
