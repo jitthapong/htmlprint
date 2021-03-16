@@ -32,32 +32,33 @@ namespace HtmlPrintLib
             try
             {
                 var htmlToImageConv = new HtmlConverter();
-                var bytesData = htmlToImageConv.FromHtmlString(Html, width: (int)printableArea.Width);
+                var bytesData = htmlToImageConv.FromHtmlString(Html, width: (int)pageSetting.PaperSize.Width, format: ImageFormat.Png, multiplier: 4);
 
-                File.WriteAllBytes("image.jpg", bytesData);
-
-                Process.Start("image.jpg");
+                File.WriteAllBytes("image.png", bytesData);
             }
             catch (Exception ex)
             {
 
             }
 
-            //doc.PrintPage += new PrintPageEventHandler((sender, e) =>
-            //{
-            //    //var visibleBound = e.Graphics.VisibleClipBounds;
-            //    //var scale = Math.Min(visibleBound.Width / img.Width, visibleBound.Height / img.Height);
-            //    //var newWidth = (int)(img.Width * scale);
-            //    //var newHeight = (int)(img.Height * scale);
-            //    //var rect = new Rectangle(0, 0, newWidth, newHeight);
+            doc.PrintPage += new PrintPageEventHandler((sender, e) =>
+            {
+                var img = Image.FromFile("image.png");
+                var targetSize = printableArea.Size;
+                var scale = Math.Min(targetSize.Width / img.Width, targetSize.Height / img.Height);
+                var newWidth = (int)(img.Width * scale);
+                var newHeight = (int)(img.Height * scale);
+                var rect = new Rectangle(0, 0, newWidth, newHeight);
+                e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
+                e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+                e.Graphics.DrawImage(img, rect);
 
-            //    var img = Image.FromFile("image.jpg");
-            //    e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            //    e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
-            //    e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            //    e.Graphics.DrawImage(img, printableArea.X, 0);
-            //});
-            //doc.Print();
+                img.Save("image_resize.png");
+
+                e.HasMorePages = false;
+            });
+            doc.Print();
         }
     }
 }

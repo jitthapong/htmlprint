@@ -31,21 +31,21 @@ namespace HtmlPrintLib
                 }
         }
 
-        public byte[] FromHtmlString(string html, int width = 1024, ImageFormat format = ImageFormat.Jpg, int quality = 100)
+        public byte[] FromHtmlString(string html, int width = 1024, ImageFormat format = ImageFormat.Jpg, int quality = 100, int multiplier = 1)
         {
             var filename = Path.Combine(directory, $"{Guid.NewGuid()}.html");
             File.WriteAllText(filename, html);
-            var bytes = FromUrl(filename, width, format, quality);
+            var bytes = FromUrl(filename, width, format, quality, multiplier);
             File.Delete(filename);
             return bytes;
         }
 
-        public byte[] FromUrl(string url, int width = 1024, ImageFormat format = ImageFormat.Jpg, int quality = 100)
+        public byte[] FromUrl(string url, int width = 1024, ImageFormat format = ImageFormat.Jpg, int quality = 100, int multiplier = 1)
         {
             var imageFormat = format.ToString().ToLower();
             var filename = Path.Combine(directory, $"{Guid.NewGuid()}.{imageFormat}");
 
-            string args = $"--encoding utf-8 --width {width} --quality {quality} --format {imageFormat} {url} {filename}";
+            string args = $"--encoding utf-8 --width {(int)(width * multiplier)} --disable-smart-width --zoom {multiplier} --quality {quality} --format {imageFormat} {url} {filename}";
 
             Process process = Process.Start(new ProcessStartInfo(toolFilepath, args)
             {
