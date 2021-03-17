@@ -29,7 +29,6 @@ namespace HtmlPrint
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.comboPrinter = new System.Windows.Forms.ComboBox();
             this.txtHtml = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +52,7 @@ namespace HtmlPrint
             this.txtHtml.Name = "txtHtml";
             this.txtHtml.Size = new System.Drawing.Size(776, 522);
             this.txtHtml.TabIndex = 1;
-            this.txtHtml.Text = resources.GetString("txtHtml.Text");
+            this.txtHtml.Text = "";
             // 
             // label1
             // 
@@ -98,9 +97,9 @@ namespace HtmlPrint
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 17);
+            this.label3.Size = new System.Drawing.Size(83, 17);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Graphic offset";
+            this.label3.Text = "Resize ratio";
             // 
             // Form1
             // 

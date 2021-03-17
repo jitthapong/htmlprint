@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,12 @@ namespace HtmlPrint
             {
                 comboPrinter.Items.Add(printer);
             }
+
+            try
+            {
+                txtHtml.Text = File.ReadAllText("bill.html");
+            }
+            catch { }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -35,7 +42,7 @@ namespace HtmlPrint
             try
             {
                 HtmlPrintLib.HtmlPrint htmlPrint = new HtmlPrintLib.HtmlPrint(html, printerName);
-                htmlPrint.Offset = Convert.ToInt32(txtAdj.Text ?? "0");
+                htmlPrint.ResizeRatio = Convert.ToInt32(txtAdj.Text ?? "0");
                 htmlPrint.Print();
             }
             catch (Exception ex)
