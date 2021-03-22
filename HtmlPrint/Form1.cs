@@ -59,7 +59,8 @@ namespace HtmlPrint
                 WkHtmlToImageWrapper.HtmlToImage htmlToImage = new WkHtmlToImageWrapper.HtmlToImage(txtHtml.Text);
                 var bytes = htmlToImage.Export(width: 300);
 
-                using(var stream = new FileStream("export.png", FileMode.Create))
+                var filePath = Path.Combine(Path.GetTempPath(), "image.png");
+                using(var stream = new FileStream(filePath, FileMode.Create))
                 {
                     stream.Write(bytes, 0, bytes.Length);
                 }

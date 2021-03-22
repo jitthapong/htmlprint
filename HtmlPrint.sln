@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlPrint", "HtmlPrint\Html
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlToImageWrapper", "WkHtmlToImageWrapper\WkHtmlToImageWrapper.csproj", "{DDED52FB-9FA1-42ED-A120-73156A200B7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{AA2EA051-E7EC-4C14-AA44-C5E3CDDF4573}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DDED52FB-9FA1-42ED-A120-73156A200B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDED52FB-9FA1-42ED-A120-73156A200B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDED52FB-9FA1-42ED-A120-73156A200B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA2EA051-E7EC-4C14-AA44-C5E3CDDF4573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA2EA051-E7EC-4C14-AA44-C5E3CDDF4573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA2EA051-E7EC-4C14-AA44-C5E3CDDF4573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA2EA051-E7EC-4C14-AA44-C5E3CDDF4573}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
