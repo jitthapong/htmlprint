@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HtmlPrintLib")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("WkHtmlToImageWrapper")]
+[assembly: AssemblyDescription("Html renderer to image wrap up wkhtmltoimage")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HtmlPrintLib")]

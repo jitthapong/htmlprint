@@ -57,12 +57,13 @@ namespace HtmlPrint
             try
             {
                 WkHtmlToImageWrapper.HtmlToImage htmlToImage = new WkHtmlToImageWrapper.HtmlToImage(txtHtml.Text);
-                var bytes = htmlToImage.Export(300);
+                var bytes = htmlToImage.Export(width: 300);
 
                 using(var stream = new FileStream("export.png", FileMode.Create))
                 {
                     stream.Write(bytes, 0, bytes.Length);
                 }
+
                 Process.Start("export.png");
             }
             catch(Exception ex)
