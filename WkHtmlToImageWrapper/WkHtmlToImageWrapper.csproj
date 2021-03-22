@@ -7,8 +7,8 @@
     <ProjectGuid>{DDED52FB-9FA1-42ED-A120-73156A200B7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HtmlPrintLib</RootNamespace>
-    <AssemblyName>HtmlPrintLib</AssemblyName>
+    <RootNamespace>WkHtmlToImageWrapper</RootNamespace>
+    <AssemblyName>WkHtmlToImageWrapper</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlConverter.cs" />
-    <Compile Include="HtmlPrint.cs" />
+    <Compile Include="HtmlToImage.cs" />
     <Compile Include="ImageFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

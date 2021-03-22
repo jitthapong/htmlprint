@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlPrint", "HtmlPrint\HtmlPrint.csproj", "{48CE32F3-826B-4BAB-8BC3-D5B2D47FD75A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlPrintLib", "HtmlPrintLib\HtmlPrintLib.csproj", "{DDED52FB-9FA1-42ED-A120-73156A200B7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WkHtmlToImageWrapper", "WkHtmlToImageWrapper\WkHtmlToImageWrapper.csproj", "{DDED52FB-9FA1-42ED-A120-73156A200B7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

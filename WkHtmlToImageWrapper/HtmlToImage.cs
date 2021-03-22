@@ -5,24 +5,31 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
 using System.IO;
 
-namespace HtmlPrintLib
+namespace WkHtmlToImageWrapper
 {
-    public class HtmlPrint
+    public class HtmlToImage
     {
-        private int _offset;
+        private int _resizeRatio;
 
         public string Html { get; set; }
         public string PrinterName { get; set; }
         public int ResizeRatio
         {
-            get => _offset;
-            set => _offset = value * 10;
+            get => _resizeRatio;
+            set => _resizeRatio = value * 10;
         }
 
-        public HtmlPrint(string html, string printerName)
+        public HtmlToImage(string html, string printerName = "")
         {
             Html = html;
             PrinterName = printerName;
+        }
+
+        public byte[] Export(int width=213, ImageFormat format = ImageFormat.Png)
+        {
+            var htmlToImageConv = new HtmlConverter();
+            var bytesData = htmlToImageConv.FromHtmlString(Html, width: width, format: format);
+            return bytesData;
         }
 
         public void Print()
@@ -39,13 +46,13 @@ namespace HtmlPrintLib
             try
             {
                 var htmlToImageConv = new HtmlConverter();
-                var bytesData = htmlToImageConv.FromHtmlString(Html, width: (int)pageSetting.PaperSize.Width, format: ImageFormat.Png, multiplier: 6);
+                var bytesData = htmlToImageConv.FromHtmlString(Html, width: (int)pageSetting.PaperSize.Width, format: ImageFormat.Bmp, multiplier: 4);
 
                 using (var stream = new MemoryStream())
                 {
                     stream.Write(bytesData, 0, bytesData.Length);
                     var img = Image.FromStream(stream);
-                    img.Save("image.png");
+                    img.Save("image.bmp");
 
                     var targetSize = printableArea.Size;
                     var ratio = Math.Min((targetSize.Width + ResizeRatio) / img.Width, (targetSize.Height + ResizeRatio) / img.Height);

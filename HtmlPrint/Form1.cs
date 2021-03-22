@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -41,11 +42,30 @@ namespace HtmlPrint
 
             try
             {
-                HtmlPrintLib.HtmlPrint htmlPrint = new HtmlPrintLib.HtmlPrint(html, printerName);
+                WkHtmlToImageWrapper.HtmlToImage htmlPrint = new WkHtmlToImageWrapper.HtmlToImage(html, printerName);
                 htmlPrint.ResizeRatio = Convert.ToInt32(txtAdj.Text ?? "0");
                 htmlPrint.Print();
             }
             catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                WkHtmlToImageWrapper.HtmlToImage htmlToImage = new WkHtmlToImageWrapper.HtmlToImage(txtHtml.Text);
+                var bytes = htmlToImage.Export(300);
+
+                using(var stream = new FileStream("export.png", FileMode.Create))
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                }
+                Process.Start("export.png");
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

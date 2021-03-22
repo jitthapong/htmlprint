@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-namespace HtmlPrintLib
+namespace WkHtmlToImageWrapper
 {
     public class HtmlConverter
     {

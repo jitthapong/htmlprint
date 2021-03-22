@@ -80,9 +80,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HtmlPrintLib\HtmlPrintLib.csproj">
+    <ProjectReference Include="..\WkHtmlToImageWrapper\WkHtmlToImageWrapper.csproj">
       <Project>{dded52fb-9fa1-42ed-a120-73156a200b7c}</Project>
-      <Name>HtmlPrintLib</Name>
+      <Name>WkHtmlToImageWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

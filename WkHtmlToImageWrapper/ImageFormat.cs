@@ -1,4 +1,4 @@
-﻿namespace HtmlPrintLib
+﻿namespace WkHtmlToImageWrapper
 {
     /// <summary>
     /// Output image format
@@ -6,6 +6,7 @@
     public enum ImageFormat
     {
         Jpg,
-        Png
+        Png,
+        Bmp
     }
 }
