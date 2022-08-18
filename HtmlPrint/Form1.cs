@@ -65,7 +65,7 @@ namespace HtmlPrint
                     stream.Write(bytes, 0, bytes.Length);
                 }
 
-                Process.Start("export.png");
+                Process.Start(filePath);
             }
             catch(Exception ex)
             {
