@@ -32,32 +32,32 @@ namespace HtmlPrint
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var printerName = comboPrinter.SelectedItem?.ToString() ?? "EPSON TM-T82 Receipt";
-            if (string.IsNullOrEmpty(printerName))
-                return;
+            //var printerName = comboPrinter.SelectedItem?.ToString() ?? "EPSON TM-T82 Receipt";
+            //if (string.IsNullOrEmpty(printerName))
+            //    return;
 
-            var html = txtHtml.Text;
-            if (string.IsNullOrEmpty(html))
-                return;
+            //var html = txtHtml.Text;
+            //if (string.IsNullOrEmpty(html))
+            //    return;
 
-            try
-            {
-                WkHtmlToImageWrapper.HtmlToImage htmlPrint = new WkHtmlToImageWrapper.HtmlToImage(html, printerName);
-                htmlPrint.ResizeRatio = Convert.ToInt32(txtAdj.Text ?? "0");
-                htmlPrint.Print();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //try
+            //{
+            //    WkHtmlToImageWrapper.HtmlToImage htmlPrint = new WkHtmlToImageWrapper.HtmlToImage(html, printerName);
+            //    htmlPrint.ResizeRatio = Convert.ToInt32(txtAdj.Text ?? "0");
+            //    htmlPrint.Print();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             try
             {
-                WkHtmlToImageWrapper.HtmlToImage htmlToImage = new WkHtmlToImageWrapper.HtmlToImage(txtHtml.Text);
-                var bytes = htmlToImage.Export(width: 300);
+                WkHtmlToImageWrapper.HtmlToImage htmlToImage = new WkHtmlToImageWrapper.HtmlToImage();
+                var bytes = htmlToImage.ToImage(txtHtml.Text, width: 300);
 
                 var filePath = Path.Combine(Path.GetTempPath(), "image.png");
                 using(var stream = new FileStream(filePath, FileMode.Create))
