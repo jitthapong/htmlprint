@@ -45,7 +45,7 @@ namespace HtmlPrint
 
             try
             {
-                HtmlToImage htmlToImage = new HtmlToImage();
+                HtmlToImageConverter htmlToImage = new HtmlToImageConverter();
 
                 PrintDocument doc = new PrintDocument();
                 PrintController printController = new StandardPrintController();
@@ -58,7 +58,7 @@ namespace HtmlPrint
 
                 try
                 {
-                    var bytesData = htmlToImage.ToImage(txtHtml.Text, width: 300);
+                    var bytesData = htmlToImage.FromHtmlString(txtHtml.Text, width: 300);
                     var adj = int.Parse(txtAdj.Text);
                     using (var stream = new MemoryStream())
                     {
@@ -115,18 +115,18 @@ namespace HtmlPrint
         {
             try
             {
-                WkHtmlToImageWrapper.HtmlToImage htmlToImage = new WkHtmlToImageWrapper.HtmlToImage();
-                var bytes = htmlToImage.ToImage(txtHtml.Text, width: 300);
+                WkHtmlToImageWrapper.HtmlToImageConverter htmlToImage = new WkHtmlToImageWrapper.HtmlToImageConverter();
+                var bytes = htmlToImage.FromHtmlString(txtHtml.Text, width: 300, format: ImageFormat.Png, quality: 95, zoomLevel: 1);
 
-                var filePath = Path.Combine(Path.GetTempPath(), "image.png");
-                using(var stream = new FileStream(filePath, FileMode.Create))
+                var testImgFilePath = Path.Combine(Path.GetTempPath(), "image.png");
+                using (var stream = new FileStream(testImgFilePath, FileMode.Create))
                 {
                     stream.Write(bytes, 0, bytes.Length);
                 }
 
-                Process.Start(filePath);
+                Process.Start(testImgFilePath);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

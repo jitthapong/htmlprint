@@ -43,8 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HtmlConverter.cs" />
-    <Compile Include="HtmlToImage.cs" />
+    <Compile Include="HtmlToImageConverter.cs" />
     <Compile Include="ImageFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
