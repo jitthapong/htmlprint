@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace HtmlPrint
 
         private void button1_Click(object s, EventArgs a)
         {
-            var printerName = comboPrinter.SelectedItem?.ToString() ?? "EPSON TM-T82 Receipt";
+            var printerName = comboPrinter.SelectedItem?.ToString() ?? "Summary";
             if (string.IsNullOrEmpty(printerName))
                 return;
 
@@ -70,7 +71,18 @@ namespace HtmlPrint
                         var ratio = Math.Min((targetSize.Width + adj) / img.Width, (targetSize.Height + adj) / img.Height);
                         var newWidth = (int)(img.Width * ratio);
                         var newHeight = (int)(img.Height * ratio);
-                        var rect = new Rectangle(0, 0, newWidth, newHeight);
+                        var destRect = new Rectangle(0, 0, newWidth, newHeight);
+
+                        var attributes = new ImageAttributes();
+                        attributes.SetColorMatrix(new ColorMatrix(
+                         new float[][]
+                         {
+                             new float[] {.3f, .3f, .3f, 0, 0},
+                             new float[] {.59f, .59f, .59f, 0, 0},
+                             new float[] {.11f, .11f, .11f, 0, 0},
+                             new float[] {0, 0, 0, 1, 0},
+                             new float[] {0, 0, 0, 0, 1}
+                         }));
 
                         //var res = new Bitmap(newWidth, newHeight);
 
@@ -89,12 +101,14 @@ namespace HtmlPrint
 
                         doc.PrintPage += new PrintPageEventHandler((sender, e) =>
                         {
-                            e.Graphics.CompositingMode = CompositingMode.SourceCopy;
-                            e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
-                            e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-                            e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                            e.Graphics.DrawImage(img, rect);
+                            //e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+                            //e.Graphics.CompositingMode = CompositingMode.SourceCopy;
+                            //e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
+                            //e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                            //e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+                            //e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                            e.Graphics.DrawImage(img, destRect, 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, attributes);
                             e.HasMorePages = false;
                         });
                         doc.Print();
@@ -116,7 +130,7 @@ namespace HtmlPrint
             try
             {
                 WkHtmlToImageWrapper.HtmlToImageConverter htmlToImage = new WkHtmlToImageWrapper.HtmlToImageConverter();
-                var bytes = htmlToImage.FromHtmlString(txtHtml.Text, width: 300, format: ImageFormat.Png, quality: 95, zoomLevel: 1);
+                var bytes = htmlToImage.FromHtmlString(txtHtml.Text, width: 300, format: WkHtmlToImageWrapper.ImageFormat.Png, quality: 95, zoomLevel: 1);
 
                 var testImgFilePath = Path.Combine(Path.GetTempPath(), "image.png");
                 using (var stream = new FileStream(testImgFilePath, FileMode.Create))
